@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Raleway", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  /* Superfícies Neutras (60% / 30%) */
+  --bg-canvas: 35 38% 95%;         /* #f7f3ed creme acolhedor */
+  --bg-surface: 36 38% 98%;        /* cartão marfim suave */
+  --bg-surface-tinted: 34 28% 91%; /* superfície secundária */
+  --bg-espresso: 24 22% 13%;       /* superfície escura editorial para destaque */
+
+  /* Tipografia com Contraste WCAG AA+ */
+  --fg-ink: 24 20% 14%;            /* #2A211C texto principal */
+  --fg-muted: 26 12% 37%;          /* #685D56 texto secundário */
+  --fg-on-dark: 36 38% 95%;        /* #f7f3ed texto sobre espresso */
+  --fg-on-dark-muted: 35 20% 76%;  /* texto secundário sobre espresso */
+
+  /* Acentos (10%) — Rosa Quartzo & Dourado Premium */
+  --quartz: 330 86% 70%;           /* #F472B6 Rosa Quartzo */
+  --quartz-deep: 330 66% 39%;      /* Rosa profundo acessível sobre creme */
+  --quartz-soft: 330 65% 94%;      /* véu quartzo translúcido */
+  --gold: 46 65% 52%;              /* #D4AF37 Dourado Premium */
+  --gold-deep: 43 70% 29%;         /* Dourado envelhecido acessível sobre creme */
+
+  /* Linhas & Sombras */
+  --border-hairline: 32 22% 84%;
+  --border-dark: 26 16% 24%;
+
+  --gradient-editorial: linear-gradient(
+    135deg,
+    hsl(36 38% 98% / 0.92) 0%,
+    hsl(35 32% 94% / 0.78) 100%
+  );
+  --gradient-quartz-gold: linear-gradient(
+    135deg,
+    hsl(330 86% 70% / 0.16) 0%,
+    hsl(46 65% 52% / 0.14) 100%
+  );
+  --shadow-card: 0 18px 42px -24px hsl(24 22% 14% / 0.12),
+    0 2px 8px -2px hsl(24 22% 14% / 0.05);
+  --shadow-elevated: 0 26px 60px -24px hsl(24 22% 14% / 0.2),
+    0 4px 16px -4px hsl(330 86% 70% / 0.12);
+}
+
+@layer base {
+  html {
+    background-color: hsl(var(--bg-canvas));
+    color: hsl(var(--fg-ink));
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: hsl(var(--bg-canvas));
+    color: hsl(var(--fg-ink));
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: hsl(var(--quartz) / 0.25);
+    color: hsl(var(--fg-ink));
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.surface-glass {
+  background: var(--gradient-editorial);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-card);
+}
+
+.grain-overlay {
+  background-image: radial-gradient(hsl(var(--fg-ink) / 0.045) 0.5px, transparent 0.5px);
+  background-size: 16px 16px;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  70% {
+    transform: scale(1.38);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.38);
+    opacity: 0;
+  }
+}
+
+.whatsapp-pulse-ring {
+  animation: pulse-ring 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .whatsapp-pulse-ring {
+    animation: none;
+    opacity: 0;
+  }
+}
